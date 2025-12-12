@@ -6,22 +6,22 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/napari-large-image-importer-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/napari-large-image-importer-{{ version }}.tar.gz
   sha256: 88f3dba39c97260840b444cf8197f312910bc309b614d3e4aa73823796af4d67
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  number: 2
 
 requirements:
   host:
-    - python >=3.8
+    - python {{ python_min }}
     - setuptools >=42.0.0
     - wheel
     - pip
   run:
-    - python >=3.8
+    - python >={{ python_min }}
     - numpy
     - napari
     - magicgui
@@ -30,6 +30,7 @@ requirements:
     - imagecodecs
     - zarr
     - dask-core
+    - pyqt
 
 test:
   imports:
@@ -38,6 +39,8 @@ test:
     - pip check
   requires:
     - pip
+    - python {{ python_min }}
+    - pyqt
 
 about:
   home: https://github.com/hiroalchem/napari-large-image-importer
