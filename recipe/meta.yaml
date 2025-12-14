@@ -1,18 +1,18 @@
 {% set name = "napari-large-image-importer" %}
-{% set version = "0.0.2" %}
+{% set version = "0.0.3" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/napari-large-image-importer-{{ version }}.tar.gz
-  sha256: 88f3dba39c97260840b444cf8197f312910bc309b614d3e4aa73823796af4d67
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: bf14732e183f2a175a67d90c2e64b978c85f036705ef6caed5991d16a1aca284
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
-  number: 2
+  number: 0
 
 requirements:
   host:
